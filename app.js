@@ -1,6 +1,5 @@
 let travelData = {};
 
-// Sayfa yüklendiğinde JSON verisini bir kez çekiyoruz
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         const response = await fetch('data.json');
@@ -14,70 +13,80 @@ function generateGuide() {
     const cityKey = document.getElementById('citySelect').value;
     const days = parseInt(document.getElementById('days').value);
     const adults = parseInt(document.getElementById('adults').value);
-    const children = parseInt(document.getElementById('children').value);
+    // Yeni yapıda çocuk sayısını kaldırıp sadeleştirdik, istersen ekleyebilirsin
     const budgetProfile = document.getElementById('budgetSelect').value;
 
-    if (!travelData[cityKey]) {
-        alert("Bu şehir için henüz veri yok!");
-        return;
-    }
+    if (!travelData[cityKey]) return alert("Veri bulunamadı!");
 
     const data = travelData[cityKey];
-    const totalPeople = adults + (children * 0.5); // Çocuklar %50 harcar varsayımı
-    
-    // Bütçe Hesaplama
     const dailyCostPerPerson = data.dailyBudget[budgetProfile];
-    const totalEstimated = Math.round(dailyCostPerPerson * totalPeople * days);
+    const totalEstimated = Math.round(dailyCostPerPerson * adults * days);
+    const currSymbol = data.currency.includes('EUR') ? '€' : '€ (Karşılığı)';
 
-    // Gezilecek Yerleri HTML'e çevir
-    const attractionsHTML = data.attractions.map(place => `
-        <li>
-            <strong>📍 ${place.name}</strong>
-            <span>⏱️ ${place.duration} | 💰 ${place.price}</span>
-        </li>
+    // Alt Modülleri Render Etme Fonksiyonları
+    const renderList = (items, isScam = false) => items.map(item => `
+        <div class="list-item ${isScam ? 'scam-item' : ''}">
+            ${item.name ? `<strong>${item.name}</strong>${item.desc || (item.duration + ' | ' + item.price)}` : item}
+        </div>
     `).join('');
 
-    // Tuzakları HTML'e çevir
-    const scamsHTML = data.scams.map(scam => `
-        <li><strong>🚨 Dikkat:</strong> ${scam}</li>
-    `).join('');
-
-    // Sonuç alanını oluştur
     const resultArea = document.getElementById('resultArea');
+    
+    // Dashboard HTML İnşası
     resultArea.innerHTML = `
-        <div class="result-card">
-            <div class="budget-hero">
-                <span>${data.city}, ${data.country} Bütçen</span>
-                <h2>~${totalEstimated} ${data.currency.includes('EUR') ? '€' : '€ (Karşılığı)'}</h2>
-                <p style="font-size:13px; opacity:0.9;">${adults} Yetişkin, ${children} Çocuk için ${days} günlük tahmin.</p>
+        <!-- Bütçe Hero Kartı -->
+        <div class="card budget-card">
+            <p>Hedef: <strong>${data.city}, ${data.country}</strong></p>
+            <h2>~${totalEstimated} ${currSymbol}</h2>
+            <p>${adults} Yetişkin için ${days} günlük ${budgetProfile} bütçe tahmini.</p>
+        </div>
+
+        <!-- Hızlı Bilgiler Kartı -->
+        <div class="card quick-facts">
+            <div class="fact-item">💵 <span>${data.currency}</span></div>
+            <div class="fact-item">${data.visa}</div>
+            <div class="fact-item">${data.best_time}</div>
+            <div class="fact-item">${data.plug}</div>
+            <div class="fact-item">${data.emergency}</div>
+        </div>
+
+        <!-- Türk Gezginler İçin Altın Taktik -->
+        <div class="card tips-card">
+            <div class="card-title">🇹🇷 Türk Gezginler İçin Taktikler</div>
+            <p>${data.tr_tips}</p>
+        </div>
+
+        <!-- Ulaşım & İnternet -->
+        <div class="card module-card">
+            <div class="card-title">🚇 Ulaşım & İletişim</div>
+            <div class="list-item" style="background:#E0F2FE; border-color:#0284C7;">
+                <strong>📱 İnternet / Hat</strong>
+                ${data.internet}
             </div>
+            ${renderList(data.transport)}
+        </div>
 
-            <div class="info-grid">
-                <div class="info-box">${data.visa}</div>
-                <div class="info-box">${data.payment}</div>
-                <div class="info-box" style="grid-column: 1 / -1;">💵 <strong>Para Birimi:</strong> ${data.currency}</div>
+        <!-- Yemek & Lezzetler -->
+        <div class="card module-card">
+            <div class="card-title">🍽️ Neler Yemeli?</div>
+            ${renderList(data.food)}
+        </div>
+
+        <!-- Gezilecek Yerler -->
+        <div class="card module-card">
+            <div class="card-title">📍 Mutlaka Gör</div>
+            ${renderList(data.attractions)}
+        </div>
+
+        <!-- Tuzaklar & Dikkat Edilecekler (Tam Genişlik) -->
+        <div class="card module-card" style="grid-column: 1 / -1;">
+            <div class="card-title" style="color: #EF4444;">🚨 Turist Tuzakları (Scams)</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                ${renderList(data.scams, true)}
             </div>
-
-            <div class="tr-tips">
-                <strong>🇹🇷 Türk Gezginler İçin Not:</strong><br>
-                ${data.tr_tips}
-            </div>
-
-            <h3 class="section-title">🎒 Mutlaka Görülmesi Gerekenler</h3>
-            <ul class="list-group">
-                ${attractionsHTML}
-            </ul>
-
-            <h3 class="section-title" style="color:var(--danger)">⚠️ Turist Tuzakları & Taktikler</h3>
-            <ul class="list-group scam-list">
-                ${scamsHTML}
-            </ul>
         </div>
     `;
 
-    // Gizli olan sonuç alanını görünür yap
+    document.getElementById('welcomeState').classList.add('hidden');
     resultArea.classList.remove('hidden');
-    
-    // Kullanıcıyı sonuçlara kaydır
-    resultArea.scrollIntoView({ behavior: 'smooth' });
 }
