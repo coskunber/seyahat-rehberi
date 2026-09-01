@@ -2,36 +2,67 @@
   "uskup": {
     "country": "Kuzey Makedonya",
     "city": "Üsküp",
-    "currency": "MKD (Makedon Denarı) / €1 ≈ 61 MKD",
+    "best_time": "📅 İlkbahar & Sonbahar",
+    "plug": "🔌 Type C/F (230V) - TR ile aynı",
+    "emergency": "🚓 Polis: 192 | 🚑 Ambulans: 194",
+    "internet": "📱 eSIM (Airalo/Holafly) çok avantajlı. TR operatör paketleri pahalıdır.",
+    "currency": "MKD (Makedon Denarı)",
     "visa": "🛂 Vizesiz (90 Gün)",
     "payment": "💳 Kart %60 | 💵 Nakit %40",
     "dailyBudget": { "ekonomik": 40, "orta": 85, "konforlu": 150 },
     "budgetBreakdown": { "accommodation": 45, "food": 30, "transport": 10 },
-    "tr_tips": "Havalimanında sadece merkeze gidecek kadar (10-15 Euro) para bozdurun. Şehir merkezindeki döviz bürolarında kur çok daha iyidir.",
+    "tr_tips": "Havalimanında sadece merkeze gidecek kadar (10-15 Euro) para bozdurun. Şehir merkezindeki döviz bürolarında kur çok daha iyidir. Çarşıda Türkçe konuşan birçok esnaf bulabilirsiniz.",
+    "transport": [
+      "🚕 Taksi ucuzdur ama binmeden fiyat sorun veya taksimetre açtırın.",
+      "🚶 Şehir merkezi ve çarşı tamamen yürüyerek gezilebilir.",
+      "🚌 Matka Kanyonu'na merkezden kalkan otobüslerle ucuz ulaşım mümkün."
+    ],
+    "food": [
+      { "name": "Cevapi (Köfte)", "desc": "Eski Çarşı'da mutlaka soğan ve sıcak pide ile yenmeli." },
+      { "name": "Tavče Gravče", "desc": "Güveçte kuru fasulye, Makedonya'nın milli yemeği." },
+      { "name": "Burek", "desc": "Kahvaltıda yoğurt ile tüketilen geleneksel börek." }
+    ],
     "scams": [
-      "Taksiciler taksimetre açmamakta ısrar edebilir, binmeden önce gideceğiniz yerin fiyatını sorun.",
+      "Taksiciler taksimetre açmamakta ısrar edebilir, baştan fiyat konuşun.",
       "Kafelerde Euro ile ödeme yaparsanız para üstünü düşük kurdan MKD olarak verebilirler."
     ],
     "attractions": [
       { "name": "Eski Çarşı (Old Bazaar)", "duration": "2-3 Saat", "price": "Ücretsiz" },
-      { "name": "Matka Kanyonu", "duration": "Yarım Gün", "price": "5€ (Tekne Turu)" }
+      { "name": "Matka Kanyonu", "duration": "Yarım Gün", "price": "5€ (Tekne Turu)" },
+      { "name": "Taş Köprü & Meydan", "duration": "1 Saat", "price": "Ücretsiz" }
     ]
   },
   "roma": {
     "country": "İtalya",
     "city": "Roma",
+    "best_time": "📅 Nisan-Mayıs & Eylül-Ekim",
+    "plug": "🔌 Type F/L (230V) - İnce uçlu fişler uyar, kalınlar için adaptör gerekebilir.",
+    "emergency": "🚓 Polis/Ambulans: 112",
+    "internet": "📱 Şehir içi Wi-Fi yaygın. eSIM kullanmak en pratik çözümdür.",
     "currency": "EUR (€)",
     "visa": "🛂 Schengen Vizesi Gereklidir",
     "payment": "💳 Kart %85 | 💵 Nakit %15",
     "dailyBudget": { "ekonomik": 70, "orta": 140, "konforlu": 250 },
     "budgetBreakdown": { "accommodation": 80, "food": 45, "transport": 15 },
     "tr_tips": "Müzeler (Kolezyum vb.) aylar öncesinden tükenir. Biletleri mutlaka gitmeden online alın. Sokak çeşmelerinden (Nasoni) su içilebilir, yanınızda matara götürün.",
+    "transport": [
+      "🚇 Metro ağı dardır ama turistik noktalara yakındır (Temassız kart geçer).",
+      "👟 Roma yürüyerek gezilen bir şehirdir, rahat ayakkabı şart.",
+      "🚕 Uber pahalıdır, beyaz renkli resmi taksileri tercih edin."
+    ],
+    "food": [
+      { "name": "Carbonara", "desc": "Gerçek Roma usulü, krema olmadan yumurta ve pecorino ile yapılır." },
+      { "name": "Suppli", "desc": "İçi mozzarella dolgulu, kızarmış pirinç topları (Harika bir atıştırmalık)." },
+      { "name": "Gelato", "desc": "Rengarenk şişirilmiş dondurmalardan uzak durun, soluk renkli olanlar gerçektir." }
+    ],
     "scams": [
       "Gladyatör kostümlü kişiler fotoğraf çektirip yüksek ücret isteyebilir.",
-      "Restoranlarda 'Coperto' (masa/kuver ücreti) hesaba otomatik eklenir, ekstra bahşiş bırakmak zorunda değilsiniz."
+      "Restoranlarda 'Coperto' (masa/kuver ücreti) hesaba otomatik eklenir, ekstra bahşiş bırakmak zorunda değilsiniz.",
+      "Termini istasyonu çevresinde çanta ve telefon hırsızlığına dikkat edin."
     ],
     "attractions": [
-      { "name": "Kolezyum & Roma Forumu", "duration": "3-4 Saat", "price": "18€" },
+      { "name": "Kolezyum & Roma Forumu", "duration": "3-4 Saat", "price": "18€ (Online Alın)" },
+      { "name": "Vatikan & Sistina Şapeli", "duration": "Yarım Gün", "price": "20€+" },
       { "name": "Trevi Çeşmesi", "duration": "30 Dk", "price": "Ücretsiz (Erken saatte gidin)" }
     ]
   }
