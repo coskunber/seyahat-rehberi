@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yurt Dışı Planlayıcı | Gitmeden Önce Bilmen Gerekenler</title>
+    <title>Yurt Dışı Seyahat Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>✈️ Yurt Dışı Planlayıcı</h1>
-            <p>Türkiye'den çıkan gezginler için bütçe, taktik ve tuzak rehberi.</p>
-        </header>
-
-        <section class="form-card">
-            <div class="input-group">
+    <div class="app-container">
+        <!-- Sol Menü / Form Alanı -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🌍 TripDash</h2>
+                <p>Akıllı Seyahat Paneli</p>
+            </div>
+            
+            <div class="form-group">
                 <label>Nereye Gidiyorsun?</label>
                 <select id="citySelect">
                     <option value="uskup">🇲🇰 Üsküp, Kuzey Makedonya</option>
@@ -22,37 +24,40 @@
                 </select>
             </div>
 
-            <div class="row">
-                <div class="input-group">
+            <div class="form-row">
+                <div class="form-group half">
                     <label>Kaç Gün?</label>
                     <input type="number" id="days" value="4" min="1">
                 </div>
-                <div class="input-group">
+                <div class="form-group half">
                     <label>Yetişkin</label>
                     <input type="number" id="adults" value="2" min="1">
                 </div>
-                <div class="input-group">
-                    <label>Çocuk</label>
-                    <input type="number" id="children" value="0" min="0">
-                </div>
             </div>
 
-            <div class="input-group">
-                <label>Nasıl Gezeceksin?</label>
+            <div class="form-group">
+                <label>Bütçe Profili</label>
                 <select id="budgetSelect">
-                    <option value="ekonomik">Sırt Çantalı (Ekonomik)</option>
-                    <option value="orta" selected>Orta Segment (Rahat)</option>
-                    <option value="konforlu">Konforlu & Lüks</option>
+                    <option value="ekonomik">🎒 Sırt Çantalı (Ekonomik)</option>
+                    <option value="orta" selected>🏨 Orta Segment (Rahat)</option>
+                    <option value="konforlu">🥂 Konforlu & Lüks</option>
                 </select>
             </div>
 
-            <button onclick="generateGuide()" class="btn-primary">Rehberi Oluştur</button>
-        </section>
+            <button onclick="generateGuide()" class="btn-primary">Rehberi Oluştur 🚀</button>
+        </aside>
 
-        <!-- Sonuçların Basılacağı Alan -->
-        <section id="resultArea" class="result-area hidden">
-            <!-- İçerik JavaScript ile buraya enjekte edilecek -->
-        </section>
+        <!-- Sağ Taraf / Sonuç Dashboard Alanı -->
+        <main class="content-area">
+            <div id="welcomeState" class="welcome-state">
+                <h1>Gitmeden önce bilmen gereken her şey.</h1>
+                <p>Seyahatini planlamak için soldaki paneli kullan.</p>
+            </div>
+            
+            <div id="resultArea" class="dashboard-grid hidden">
+                <!-- JS içeriği buraya basılacak -->
+            </div>
+        </main>
     </div>
 
     <script src="app.js"></script>
