@@ -33,6 +33,7 @@ function generateGuide() {
     const resultArea = document.getElementById('resultArea');
     
     // Dashboard HTML İnşası
+    // Dashboard HTML İnşası (Güncellenmiş Hali)
     resultArea.innerHTML = `
         <!-- Bütçe Hero Kartı -->
         <div class="card budget-card">
@@ -50,6 +51,20 @@ function generateGuide() {
             <div class="fact-item">${data.emergency}</div>
         </div>
 
+        <!-- YENİ: Gelir Ortaklığı (Affiliate) Aksiyon Kartı -->
+        <div class="booking-card">
+            <div class="booking-content">
+                <h3>🎟️ ${data.city} Seyahatini Planla</h3>
+                <p>Uçak bileti, otel ve araç kiralama fiyatlarını karşılaştır.</p>
+            </div>
+            <div class="booking-actions">
+                <!-- href linklerine kendi affiliate (iş ortaklığı) linklerini ekleyebilirsin -->
+                <a href="https://www.skyscanner.com.tr" target="_blank" class="affiliate-btn">✈️ Uçak Bileti</a>
+                <a href="https://www.booking.com" target="_blank" class="affiliate-btn">🏨 Otel Bul</a>
+                <a href="https://www.rentalcars.com" target="_blank" class="affiliate-btn">🚗 Araç Kirala</a>
+            </div>
+        </div>
+
         <!-- Türk Gezginler İçin Altın Taktik -->
         <div class="card tips-card">
             <div class="card-title">🇹🇷 Türk Gezginler İçin Taktikler</div>
@@ -61,9 +76,16 @@ function generateGuide() {
             <div class="card-title">🚇 Ulaşım & İletişim</div>
             <div class="list-item" style="background:#E0F2FE; border-color:#0284C7;">
                 <strong>📱 İnternet / Hat</strong>
-                ${data.internet}
+                ${data.internet} <br><br>
+                <!-- Ufak içi metin linki (Airalo vb. için) -->
+                <a href="#" style="color:#0284C7; font-weight:600; text-decoration:none;">📲 eSIM Fiyatlarına Göz At →</a>
             </div>
             ${renderList(data.transport)}
+        </div>
+
+        <!-- YENİ: Google AdSense / Sponsorlu Alan Placeholder -->
+        <div class="ad-banner">
+            <span>Google AdSense / 728x90 Reklam Alanı</span>
         </div>
 
         <!-- Yemek & Lezzetler -->
@@ -78,13 +100,14 @@ function generateGuide() {
             ${renderList(data.attractions)}
         </div>
 
-        <!-- Tuzaklar & Dikkat Edilecekler (Tam Genişlik) -->
+        <!-- Tuzaklar & Dikkat Edilecekler -->
         <div class="card module-card" style="grid-column: 1 / -1;">
             <div class="card-title" style="color: #EF4444;">🚨 Turist Tuzakları (Scams)</div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
                 ${renderList(data.scams, true)}
             </div>
         </div>
+    
     `;
 
     document.getElementById('welcomeState').classList.add('hidden');
