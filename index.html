@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yurt Dışı Planlayıcı | Gitmeden Önce Bilmen Gerekenler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>✈️ Yurt Dışı Planlayıcı</h1>
+            <p>Türkiye'den çıkan gezginler için bütçe, taktik ve tuzak rehberi.</p>
+        </header>
+
+        <section class="form-card">
+            <div class="input-group">
+                <label>Nereye Gidiyorsun?</label>
+                <select id="citySelect">
+                    <option value="uskup">🇲🇰 Üsküp, Kuzey Makedonya</option>
+                    <option value="roma">🇮🇹 Roma, İtalya</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>Kaç Gün?</label>
+                    <input type="number" id="days" value="4" min="1">
+                </div>
+                <div class="input-group">
+                    <label>Yetişkin</label>
+                    <input type="number" id="adults" value="2" min="1">
+                </div>
+                <div class="input-group">
+                    <label>Çocuk</label>
+                    <input type="number" id="children" value="0" min="0">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Nasıl Gezeceksin?</label>
+                <select id="budgetSelect">
+                    <option value="ekonomik">Sırt Çantalı (Ekonomik)</option>
+                    <option value="orta" selected>Orta Segment (Rahat)</option>
+                    <option value="konforlu">Konforlu & Lüks</option>
+                </select>
+            </div>
+
+            <button onclick="generateGuide()" class="btn-primary">Rehberi Oluştur</button>
+        </section>
+
+        <!-- Sonuçların Basılacağı Alan -->
+        <section id="resultArea" class="result-area hidden">
+            <!-- İçerik JavaScript ile buraya enjekte edilecek -->
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
